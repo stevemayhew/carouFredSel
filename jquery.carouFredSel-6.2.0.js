@@ -4006,10 +4006,9 @@
 		}
 
 		//	visible items
-		if (is_object(obj.visible))
+        if (is_function(obj.visible))
 		{
-			obj.visibleConf.min = obj.visible.min;
-			obj.visibleConf.max = obj.visible.max;
+			obj.visibleConf.adjust = obj.visible;
 			obj.visible = false;
 		}
 		else if (is_string(obj.visible))
@@ -4026,11 +4025,12 @@
 			}
 			obj.visible = false;
 		}
-		else if (is_function(obj.visible))
-		{
-			obj.visibleConf.adjust = obj.visible;
-			obj.visible = false;
-		}
+		else if (is_object(obj.visible))
+        {
+            obj.visibleConf.min = obj.visible.min;
+            obj.visibleConf.max = obj.visible.max;
+            obj.visible = false;
+        }
 
 		//	set items filter
 		if (!is_string(obj.filter))
